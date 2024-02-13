@@ -183,6 +183,12 @@ spec:
       {{- end }}
     {{- end }}
       volumes:
+        - name: secrets-store01-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: azure-kvname-user-msi
         - name: configmaps
           configMap:
             name: {{ include "xwiki.initScripts" . }}
